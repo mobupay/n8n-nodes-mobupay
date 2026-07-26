@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-mobupay.mobupayTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Finance & Accounting"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.mobupay.nc/guides/no-code"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.mobupay.nc/guides/no-code"
+			}
+		]
+	}
+}

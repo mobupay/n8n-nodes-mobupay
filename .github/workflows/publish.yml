@@ -1,0 +1,31 @@
+# Publishes the package to npm with a provenance statement (npm Trusted
+# Publishers, OIDC): no npm token stored in the repo. Prerequisite: on
+# npmjs.com, the package must declare this repository + workflow as its
+# trusted publisher (Settings > Publishing access > Trusted Publisher).
+# Provenance via GitHub Actions is required by n8n for verified community
+# nodes (Creator Portal) since 2026-05-01.
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # npm >= 11.5 required for OIDC trusted publishing (Node 24 ships it).
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm run build
+      # With a trusted publisher configured, npm mints the credentials from the
+      # OIDC token and attaches the provenance statement automatically.
+      - run: npm publish --access public

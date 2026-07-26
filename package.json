@@ -1,0 +1,56 @@
+{
+  "name": "n8n-nodes-mobupay",
+  "version": "1.0.0",
+  "description": "n8n community node for Mobupay payments (New Caledonia and the Pacific): create hosted payment links, fetch payment status, refund, and receive signed webhook events.",
+  "keywords": [
+    "n8n-community-node-package",
+    "mobupay",
+    "payments",
+    "payment-gateway",
+    "payment-link",
+    "new-caledonia",
+    "xpf"
+  ],
+  "license": "MIT",
+  "homepage": "https://docs.mobupay.nc/guides/no-code",
+  "author": {
+    "name": "Mobulia Payment Solutions",
+    "email": "support@mobupay.nc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobupay/n8n-nodes-mobupay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mobupay/n8n-nodes-mobupay/issues"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/copy-icons.js",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/MobupayApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Mobupay/Mobupay.node.js",
+      "dist/nodes/MobupayTrigger/MobupayTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "n8n-workflow": "^1.82.0",
+    "typescript": "^5.6.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
